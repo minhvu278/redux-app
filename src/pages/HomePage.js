@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import HobbyList from "../components/Home/HobbyList";
-import {addNewHobby} from "../actions/hobby";
+import {addNewHobby, setActiveHobby} from "../actions/hobby";
 
 const randomNumber = () =>{
     return 1000 + Math.trunc((Math.random() * 9000))
@@ -27,7 +27,8 @@ function HomePage(props) {
     }
 
     const handleHobbyClick = (hobby) => {
-
+        const action = setActiveHobby(hobby)
+        dispatch(action)
     }
 
     return (
@@ -37,7 +38,7 @@ function HomePage(props) {
             <button onClick={handleAddHobbyClick}>Random hobby</button>
             <HobbyList hobbyList={hobbyList}
                        activeId={activeId}
-                       onHobbyClick={handleHobbyClick()}
+                       onHobbyClick={handleHobbyClick}
             />
         </div>
     )
